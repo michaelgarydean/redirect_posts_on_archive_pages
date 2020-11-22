@@ -25,20 +25,18 @@ function mgd_redirect_posts_url_permalink( $permalink, $post ) {
      */
 
     $redirect_url = get_post_meta( $post->ID, 'mgd_redirect_url', true );
-    $category_for_redirections = get_post_meta( $post->ID, 'mgd_category_for_redirect_url', true );
+    $category_for_redirections = 'releases';
 
     // If there isn't a URL set by the user, return the default permalink.
     if ( empty( $redirect_url ) || empty( $category_for_redirections ) ) {
     	return $permalink;
     }
 
-    return "https://michaelgarydean.bandcamp.com/";
-
 	/*
 	 * Check if we are on the archive page for the right category
 	 */
 	if ( is_category( $category_for_redirections ) ) {
-        $redirect_permalink = "https://michaelgarydean.bandcamp.com/";
+        $redirect_permalink = $redirect_url;
 	}
 
     // Return the value of the URL to replace the permalink with
